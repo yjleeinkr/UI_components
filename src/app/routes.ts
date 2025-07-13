@@ -1,20 +1,24 @@
-import Test1 from "@/components/test1";
-import Test2_React from "@/components/test2/react";
-import Test2_Vanilla from "@/components/test2/vanilla";
+import Study_Vanilla from "@/components/00_study/vanilla";
+import Study_Context from "@/components/00_study/context";
+import Accordion from "@/components/01_accordion";
+import TabMenu from "@/components/02_tabMenu";
+import ToolTip from "@/components/03_tooltip";
 
 const routePaths = [
   "/",
-  "/test1",
-  "/test2",
-  "/test2/vanilla",
-  "/test2/react",
+  "/study",
+  "/study/vanilla",
+  "/study/context",
+  "/accordion",
+  "/tabMenu",
+  "/tooltip",
 ] as const;
 
 export type ROUTE_PATH = (typeof routePaths)[number];
 
 type BaseRoute = {
-  key: string;
-  link: string;
+  key: ROUTE_PATH;
+  link: ROUTE_PATH;
   name: string;
 };
 
@@ -33,31 +37,43 @@ export const routes: Record<ROUTE_PATH, ROUTE> = {
     key: "/",
     link: "/",
     name: "root",
-    children: ["/test1", "/test2"],
+    children: ["/study", "/accordion", "/tabMenu", "/tooltip"],
   },
-  "/test1": {
-    key: "/test1",
-    link: "/test1",
-    name: "테스트1",
-    children: Test1,
+  "/study": {
+    key: "/study",
+    link: "/study/vanilla",
+    name: "이론",
+    children: ["/study/vanilla", "/study/context"],
   },
-  "/test2": {
-    key: "/test2",
-    link: "/test2/vanilla",
-    name: "테스트2",
-    children: ["/test2/vanilla", "/test2/react"],
+  "/study/vanilla": {
+    key: "/study/vanilla",
+    link: "/study/vanilla",
+    name: "Study_Vanilla",
+    children: Study_Vanilla,
   },
-  "/test2/vanilla": {
-    key: "/test2/vanilla",
-    link: "/test2/vanilla",
-    name: "Test2_Vanilla",
-    children: Test2_Vanilla,
+  "/study/context": {
+    key: "/study/context",
+    link: "/study/context",
+    name: "Context",
+    children: Study_Context,
   },
-  "/test2/react": {
-    key: "/test2/react",
-    link: "/test2/react",
-    name: "Test2_React",
-    children: Test2_React,
+  "/accordion": {
+    key: "/accordion",
+    link: "/accordion",
+    name: "아코디언",
+    children: Accordion,
+  },
+  "/tabMenu": {
+    key: "/tabMenu",
+    link: "/tabMenu",
+    name: "탭메뉴",
+    children: TabMenu,
+  },
+  "/tooltip": {
+    key: "/tooltip",
+    link: "/tooltip",
+    name: "툴팁",
+    children: ToolTip,
   },
 };
 
