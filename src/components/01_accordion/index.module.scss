@@ -1,0 +1,127 @@
+.Accordions {
+  .container {
+    // 전체 감싸는 클래스
+    border: solid 1px #ccc;
+    border-bottom: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .tab {
+    // 타이틀 영역
+    padding: 15px;
+    border-bottom: solid 1px #ccc;
+    cursor: pointer;
+
+    &::before {
+      content: "+";
+      margin: 0 8px 0 -5px;
+    }
+  }
+
+  .description {
+    // 상세 내용 영역
+    padding: 15px;
+    border-bottom: solid 1px #ccc;
+    background-color: #eff;
+  }
+
+  .item {
+    &.active {
+      .tab {
+        background-color: #ace;
+
+        &::before {
+          content: "-";
+        }
+      }
+    }
+  }
+
+  .item2 {
+    .description {
+      display: none;
+    }
+
+    &.active {
+      .description {
+        display: block;
+      }
+    }
+  }
+
+  .item3 {
+    overflow: hidden;
+
+    .description {
+      padding: 0px 15px;
+      border-bottom-width: 0;
+      max-height: 0;
+      transition: ease 0.3s;
+    }
+
+    &.active .description {
+      padding: 15px;
+      border-bottom-width: 1px;
+      max-height: 100vh;
+      // 100vh로 해두면 px과 달리 정확한 높이가 정해져있지 않기 때문에 살짝 덜컹거리는 느낌이 들긴한다.
+    }
+  }
+
+  .item5 {
+    overflow: hidden;
+    .input {
+      display: none;
+    }
+    .tab {
+      display: block;
+    }
+    .description {
+      padding: 0 15px;
+      border-bottom-width: 0;
+      max-height: 0;
+      transition: ease 0.3s;
+    }
+    .input:checked {
+      + .tab {
+        background-color: #ace;
+
+        &::before {
+          content: "-";
+        }
+      }
+      // ~ 동일한 부모를 가진 모든 형제 노드들 선택
+      ~ .description {
+        padding: 15px;
+        border-bottom-width: 1px;
+        max-height: 300px;
+        // 100vh로 해두면 px과 달리 정확한 높이가 정해져있지 않기 때문에 살짝 덜컹거리는 느낌이 들긴한다.
+      }
+    }
+  }
+
+  details {
+    summary {
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+
+      &::marker {
+        content: "+ ";
+      }
+    }
+
+    &[open] {
+      summary {
+        background-color: #ace;
+        border-bottom-width: 0;
+
+        &::marker {
+          content: "- ";
+        }
+      }
+    }
+  }
+}
