@@ -1,0 +1,136 @@
+.Tabs {
+  .container {
+    border: 1px solid #ccc;
+  }
+  .tab {
+    border-bottom: 1px solid #ccc;
+    display: grid;
+    grid-auto-flow: column; // 칼럼 방향으로 자동 배치
+    grid-auto-columns: 1fr; // 각 칼럼 동일한 크기로
+    cursor: pointer;
+  }
+  .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 1px solid #ccc;
+    padding: 15px;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &.active {
+      background-color: #bde;
+    }
+  }
+  .description {
+    padding: 15px;
+  }
+
+  .tabMenu2 {
+    .description {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  .tabMenu3 {
+    position: relative;
+
+    .item {
+      .title {
+        position: absolute;
+        top: 0;
+        width: 25%;
+        padding: 15px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        cursor: pointer;
+      }
+
+      .description {
+        display: none;
+        padding-top: 65px;
+      }
+
+      &:nth-child(1) .title {
+        left: 0%;
+      }
+      &:nth-child(2) .title {
+        left: 25%;
+      }
+      &:nth-child(3) .title {
+        left: 50%;
+      }
+      &:nth-child(4) .title {
+        left: 75%;
+      }
+
+      &.active {
+        .title {
+          background-color: #bde;
+        }
+        .description {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .tabMenu5 {
+    position: relative;
+
+    .item {
+      @for $i from 1 through 4 {
+        &:nth-child(#{$i}) .title {
+          left: 25% * ($i - 1);
+          border-left: if($i == 1, none, 1px solid #ccc);
+        }
+      }
+
+      input {
+        display: none;
+
+        &:checked {
+          + .title {
+            background-color: #ace;
+          }
+
+          ~ .description {
+            display: block;
+          }
+        }
+      }
+
+      .title {
+        position: absolute;
+        top: 0;
+        width: 25%;
+        padding: 15px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid #ccc;
+        border-left: 1px solid #ccc;
+        cursor: pointer;
+      }
+
+      .description {
+        display: none;
+        padding-top: 65px;
+      }
+    }
+  }
+  .text {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+}
